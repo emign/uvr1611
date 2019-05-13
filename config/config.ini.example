@@ -1,0 +1,21 @@
+[mysql]
+server = localhost
+user = uvr1611
+password =
+database = uvr1611
+
+[uvr1611]
+logger = cmi
+blnet_login = false
+address = 192.168.1.25
+port = 80
+reset = false
+http_port = 80
+
+[app]
+name = "Solar/Heizung Datenauswertung"
+debug = true
+email =
+chartcache = 300
+latestcache = 30
+reduction = 2
