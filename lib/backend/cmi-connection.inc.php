@@ -143,7 +143,7 @@ class CmiConnection
 		$process = curl_init();
 		$ip = $this->config->address;
 		$port = $this->config->port;
-		print("IP: ".$ip." ".$port." ".$url);
+		//print("IP: ".$ip." ".$port." ".$url);
 		curl_setopt($process, CURLOPT_URL, "http://$ip:$port$url");
 		curl_setopt($process, CURLOPT_USERPWD,  "winsol:data");
 		curl_setopt($process, CURLOPT_TIMEOUT, 10); //timeout after 30 seconds

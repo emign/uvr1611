@@ -26,9 +26,9 @@ function Table(item)
 		$("#minmax_chart").show();
 		$("#line_chart").hide();
 	});
-
+	var $digitalTable = $("<table><thead></thead><tbody></tbody></table>");
 	if(item.columns.digital.length > 0) {
-		var $digitalTable = $("<table><thead></thead><tbody></tbody></table>");
+		
 		$digitalTable.find('thead').append("<tr><th /><th>Laufzeit</th><th>Ein/Aus</th></tr>");
 		$digitalTable.addClass("chartinfo");
 		var data = [];

@@ -6,14 +6,14 @@ var menu = {
 		$.ajax({
 		    url: "menu.php",
 		    dataType:"json",
-		    success: function(jsonData){
+		    success: function(jsonData){		    	
 		    	actualValues.values = jsonData.values;
 		    	menu.items = jsonData.menu;
 				menu.loggedin = jsonData.loggedin;
 				var $menu = $("<div></div>");
 				var $pages = $("<div><div id=\"chart_container\"><div id=\"step_chart\"></div><div id=\"line_chart\"></div><div id=\"minmax_chart\"></div></div><div id=\"energy_container\"><div id=\"bar_chart\"></div></div></div>");
 				$pages.find("#minmax_chart").hide();
-
+				
 				for (var i in menu.items)
 				{
 					var item = menu.items[i];
@@ -69,11 +69,11 @@ var menu = {
 				function() {
 					$(this).removeClass("hover");
 				});
-
+				
 				$menu.find("div.item").click(function() {
 					location.hash = $(this).data("index");
 				});
-
+				
 				$(document).ready(function() {
 					$("#menu").append($menu.children());
 					$("#pages").append($pages.children());
@@ -100,7 +100,7 @@ var menu = {
 				$("div.item:not(.protected)").fadeIn('slow');
 			}
 		}
-
+		
 
 	},
 	login: function()
@@ -155,7 +155,7 @@ var menu = {
 					$("#content").show().animate({'top':90}, function() {
 						$("#content").trigger('complete');
 					});
-
+					
 					menu.showContent();
 				});
 			}
@@ -170,7 +170,7 @@ var menu = {
 		$("#pages > table.chartinfo").detach();
 		$("#pages").children().hide();
 		menu.selectedItem["container"].show();
-
+		
 		switch(menu.selectedItem["type"]) {
 			case "schema":
 				toolbar.hideDateNavigation();
@@ -207,7 +207,7 @@ var menu = {
 }
 
 
-var weather =
+var weather = 
 {
 	fetch: function(city)
 	{
@@ -220,9 +220,10 @@ var weather =
 				units: "metric",
 				lang: "de",
 				APPID: "d52055d220da19721ebbf38948479e3c"
-			},
+			},	   
 			success: function(data)
 			{
+				console.log(data);
 				var dateFormatter = new google.visualization.DateFormat({pattern: "EEEE, dd.MM.yyyy, HH:mm"});
 				var timeFormatter = new google.visualization.DateFormat({pattern: "HH:mm"});
 				menu.selectedItem["container"].find("h2").text(data.name);
@@ -254,7 +255,7 @@ var weather =
 					weather.calcSun($(this), currTime, sunRise, sunSet);
 				});
 			}
-		});
+		});	
     },
 	calcSun: function(sun, currTime, sunRise, sunSet) {
 		var timeFormatter = new google.visualization.DateFormat({pattern: "HH:mm"});
@@ -337,12 +338,12 @@ var weather =
 			var xpos = 40+x;
 		}
 		sun.find("#current_time").attr("transform","matrix(1, 0, 0, 1, "+xpos+", 80)");
-
+		
 	}
 }
 
 
-var actualValues =
+var actualValues = 
 {
 	date: null,
 	init: function()
@@ -354,8 +355,9 @@ var actualValues =
 		actualValues.date = (typeof date !== 'undefined' ? date : null);
 		$.ajax({
 			url: "latest.php" + (actualValues.date ? "?date="+actualValues.date : ""),
-			dataType:"json",
+			dataType:"json",					   
 			success: this.display
+			
 		});
 	},
 	timer: function()
@@ -402,7 +404,7 @@ var actualValues =
      							}
      							else
      							{
-     								$(value.path)[i].endElement();
+     								$(value.path)[i].endElement();	
      							}
      						}
      						return null;
@@ -414,7 +416,7 @@ var actualValues =
      							return data[value.frame][value.type];
      						}
      				}
-
+     
      			});
 			}
 			catch(e) {
@@ -425,15 +427,15 @@ var actualValues =
 					var text = "ERROR";
 					var message = "Could not format "+data[value.frame][value.type]+" of "+value.frame+"."+value.type+" using "+value.format+".";
 					$("#errorMessage").html("<strong>Error</strong> "+message);
-					$("#error").slideDown();
+					$("#error").slideDown();					
 				}
 			}
-
+     			
      		if(text !== null && text !== "null" && text.indexOf("undefined") == -1)
      		{
 				$(value.path).text(text);
      		}
-
+			
 		}
 		$("#time").text(data["time"]);
 	}
@@ -525,16 +527,16 @@ var converter = {
 
 google.load('visualization', '1', {'packages':['corechart']});
 menu.init();
-
 $(document).ajaxError(function(event, request, settings) {
+	
 	try {
 		var response = $.parseJSON(request.responseText);
-		console.log(response);
-		var message = response.message;
-		console_log (message);
+		console.log("Response: " + response);
+		var message = response.message;		
+		console_log ("Message: " + message);
 	}
 	catch(e) {
-		var message = "Unknown error dfdfg.";
+		var message = " Unknown error: " + e;
 	}
 	$(document).ready(function() {
 		$("#errorMessage").html("<strong>Error</strong> "+message);
@@ -548,6 +550,6 @@ $(document).ready(function() {
 	});
 	actualValues.init();
 	toolbar.init();
-
+	
 	$(window).on("hashchange", menu.handle);
 });

@@ -18,8 +18,7 @@ function sendAjaxError($e){
 	if($config->app->debug) {
 		$error["stacktrace"] = $e->getTraceAsString();
 	}
-	$error["message"] = $e->getMessage();
-	echo ('TEST');
+	$error["message"] = $e->getMessage();	
 	echo json_encode($error);
 	exit();
 }
