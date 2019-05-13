@@ -1,9 +1,13 @@
-UVR1611 Data Logger Pro
+UVR1611 Data Logger Pro (Revived 2019)
 ======
 
-[![PayPal spenden](https://img.shields.io/badge/paypal-spenden-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5M59ZZNRBEWKG "Spenden für dieses Projekt mit Paypal") [![Amazon Wunschliste](https://img.shields.io/badge/amazon-wunschliste-blue.svg)](https://www.amazon.de/registry/wishlist/1GOPK9GBCPNI0 "Bertram's Wunschliste")
+[![PayPal spenden an ursprünglichen Autor](https://img.shields.io/badge/paypal-spenden-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5M59ZZNRBEWKG "Spenden für dieses Projekt mit Paypal") [![Amazon Wunschliste](https://img.shields.io/badge/amazon-wunschliste-blue.svg)](https://www.amazon.de/registry/wishlist/1GOPK9GBCPNI0 "Bertram's Wunschliste")
 
 Der *UVR1611 Datalogger Pro* ist ein webbasierender Datenlogger für die Universalregelungen UVR1611 und UVR16x2. Die Daten werden mit Hilfe des BL-NET oder CMI über den CAN oder DL abgerufen.
+
+EDIT 2019
+-----
+Ich habe mich dem Programm angenommen, um es auf einem Raspberry-Pi 2019 mit PHP7 und einer CMI zu betreiben. Für alle anderen Konfigurationen kann ich keine Hilfestellung geben. Alle Anleitungen wurden angepasst, so dass es Möglich sein sollte, das Projekt in gleicher oder ähnlicher Umgebung zu betreiben.
 
 Die Features sind:
 * UVR1611 oder UVR16x2
@@ -33,18 +37,28 @@ Vorteile der Anwendung
 
 Der BL-Net besitzt nur eine begrenzte Speicherkapazität und die Heizungsdaten müssen deshalb regelmäßig – manuell – ausgelesen werden, damit sie nicht verloren gehen. Der direkte Webzugriff auf den BL-Net durch externe Nutzer ist in mehrfacher Hinsicht unvorteilhaft (Sicherheit und Überlastung). Das Speichern und Auslesen der Daten aus der SQL Datenbank verhindert diese Problematik.
 
-Installation
+I Installation
 ------
 
 Für die Anwendung wird ein Webserver mit PHP und ein MySQL Datenbank-Server benötigt. Die benötigten Pakete können unter Debian/Ubuntu mit folgendem Befehl installiert werden:
 
-	sudo apt-get install lighttpd php5-cgi mysql-server mysql-client php5-mysql php5-curl
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install lighttpd php7.0-cgi mysql-server mysql-client php7.0-mysql php7.0-curl
 	sudo lighttpd-enable-mod fastcgi-php
 	sudo service lighttpd force-reload
 
 Danach kann die Anwendung in den Ordner `/var/www/` kopiert werden. 
 
-Konfiguration
+II MySQL User anlegen
+------
+	sudo mysql
+	CREATE USER 'uvr1611'@'localhost' IDENTIFIED BY 'password';
+	GRANT ALL PRIVILEGES ON * . * TO 'uvr1611'@'localhost';
+	
+	GRANT ALL PRIVILEGES ON * . * TO 'root'@'192.168.178.%' IDENTIFIED BY 'PASS';
+
+III Konfiguration
 ------
 
 Die Konfiguration des Datenloggers erfolgt über die Datei `config/config.ini`:
@@ -56,9 +70,9 @@ Die Konfiguration des Datenloggers erfolgt über die Datei `config/config.ini`:
 	database = uvr1611
 	
 	[uvr1611]
-	logger = "bl-net"
+	logger = "cmi"
 	address = 10.0.0.100
-	port = 40000
+	port = 80
 	reset = false
 	blnet_login = false
 	http_port = 80
@@ -70,7 +84,7 @@ Die Konfiguration des Datenloggers erfolgt über die Datei `config/config.ini`:
 	latestcache = 60
 	reduction = 2
 
-Im Abschnitt `mysql` befinden sich die Parameter für den Zugang zur Datenbank. Der angebene Datenbank-Benutzer benötigt die Rechte `DELETE`, `EXECUTE`, `INSERT`, `SELECT`, `SHOW VIEW` und `UPDATE` für die Datebank. Im Abschnitt `uvr1611` wird der `logger` angegeben (`bl-net` oder `cmi`). Weiters bedindet sich hier die IP-Adresse für den BL-NET/CMI. Mit dem Schalter `reset` kann das Löschen der Daten vom BL-NET nach dem Logging aktiviert werden. Der Bereich `app` legt Einstellungen zur Anwendung fest. Anwendung fest. Unter `name` kann der Eintrag „Solar/Heizung Datenauswertung“ durch einen individuellen Eintrag ersetzt werden, ebenso der Eintrag unter `email`. `chartcache` und `latestcache` legen den Zeitraum in Sekunden fest, in dem keine neuen Daten vom Bootloader geholt werden. `reduction` reduziert die Daten in den Diagrammen um den angegebenen Faktor.
+Im Abschnitt `mysql` befinden sich die Parameter für den Zugang zur Datenbank. Der angebene Datenbank-Benutzer benötigt die Rechte `DELETE`, `EXECUTE`, `INSERT`, `SELECT`, `SHOW VIEW` und `UPDATE` für die Datebank. Im Abschnitt `uvr1611` wird der `logger` angegeben (`bl-net` oder `cmi`). Weiters bedindet sich hier die IP-Adresse für den BL-NET/CMI. Früher (evtl noch bei alten CMI-Firmwares), verwendete man Port 40000 für die Datenabfrage. Bei meiner CMI mit OS-Version 1.33.3 nimmt man einfach den Port 80. Mit dem Schalter `reset` kann das Löschen der Daten vom BL-NET nach dem Logging aktiviert werden. Der Bereich `app` legt Einstellungen zur Anwendung fest. Anwendung fest. Unter `name` kann der Eintrag „Solar/Heizung Datenauswertung“ durch einen individuellen Eintrag ersetzt werden, ebenso der Eintrag unter `email`. `chartcache` und `latestcache` legen den Zeitraum in Sekunden fest, in dem keine neuen Daten vom Bootloader geholt werden. `reduction` reduziert die Daten in den Diagrammen um den angegebenen Faktor.
 
 Datenbank
 ------
