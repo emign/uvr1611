@@ -1,6 +1,6 @@
-UVR1611 Data Logger Pro (Revived 2019) FORK von https://github.com/emign/uvr1611
+UVR1611 Data Logger Pro (Revived 2019)
 ======
-All credits to https://github.com/emign/uvr1611. I just made some PHP7 and Raspi adjustments.
+All credits to https://github.com/berwinter/uvr1611. I just made some PHP7 and Raspi adjustments.
 
 [![PayPal spenden an ursprünglichen Autor](https://img.shields.io/badge/paypal-spenden-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5M59ZZNRBEWKG "Spenden für dieses Projekt mit Paypal") [![Amazon Wunschliste](https://img.shields.io/badge/amazon-wunschliste-blue.svg)](https://www.amazon.de/registry/wishlist/1GOPK9GBCPNI0 "Bertram's Wunschliste")
 
