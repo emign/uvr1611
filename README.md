@@ -62,6 +62,7 @@ III Konfiguration
 ------
 
 Die Konfiguration des Datenloggers erfolgt über die Datei `config/config.ini`:
+Diese Datei muss erstellt werden: config/config.ini.example in config/config.ini umbenennen
  
 	[mysql]
 	server = localhost
