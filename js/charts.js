@@ -241,7 +241,7 @@ var barChart = {
 		},
 		chartArea: {width: '80%', height: '80%'},
 		legend: {position: 'bottom'},
-		colors: ['#3366cc','#dc3912','#ff9900','#109618','#990099','#3366cc','#dc3912','#ff9900','#109618','#990099']
+		colors: ['#3366cc','#dc3912','#ff9900','#109618','#990099','#7AE7C7','#B58DB6','#BBB193','#247BA0','#B33951']
 	},
 	init: function()
 	{
