@@ -1,0 +1,390 @@
+body {
+	background-color: #EEE;
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:Helvetica;
+}
+
+#content {
+	left:0;
+	right:0;
+	bottom:0;
+	top:100%;
+	position:absolute;
+	background-color: #FFF;
+	display:none;
+}
+
+
+#menu {
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	margin: auto;
+	width: 400px;
+	height: 250px;
+	position:absolute;
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 10px 20px;
+}
+
+#indicator {
+	top: 24px;
+	left: 19px;
+	background-color: #eee;
+	border: 1px solid #DDD;
+	border-radius: 5px;
+	height:60px;
+	width:100px;
+	position: absolute;
+	display:none;
+}
+
+div.chart {
+	background: url(../images/chart_bar.png) no-repeat transparent;
+}
+
+div.home {
+	background: url(../images/home.png) no-repeat transparent;
+}
+div.weather {
+	background: url(../images/weather.png) no-repeat transparent;
+}
+div.icon
+{
+    background-position: 50% 100%;
+	width:32px;
+	height:32px;
+	margin: 20px auto 5px;	
+}
+
+div.item {
+	position: relative;
+	color:#BBB;
+	text-align:center;
+	font-size:1.1em;
+	height:80px;
+	width:100px;
+	float: left;
+}
+
+div.hover, div.active{
+	color:#888;
+	cursor:pointer;
+}
+
+div.hover > div.icon, div.active > div.icon {
+    background-position: 50% 0;
+}
+
+#chart_div {
+	margin:20px;
+}
+
+#logo {
+	top:50%;
+	left:50%;
+	margin-left:-210px;
+	margin-top:-210px;
+	width:400px;
+	height:80px;
+	z-index: 90;
+	position: absolute;
+}
+
+#contact {
+	color: #444;
+	position:fixed;
+	right:20px;
+	top:10px;
+	z-index: 90;
+}
+#contact > a{
+	color: #444;
+}
+
+#login {
+	font-size:10px;
+	position:fixed;
+	right:20px;
+	top:35px;
+	z-index: 90;
+}
+
+.schema {
+	text-align: center;
+}
+
+.weatherinfo {
+	color: #444;
+	width: 600px;
+	margin: 20px auto;
+}
+
+.weatherinfo > table {
+	width: 200px;
+	table-layout: fixed;
+	border-collapse:collapse;
+}
+
+td.weatherprop {
+	font-weight: bold;
+	width: 120px;
+}
+td.weathervalue {
+	width: 80px;
+}
+
+.weatherinfo > h2 {
+	font-weight: bold;
+	font-size:2em;
+	margin-bottom:0;
+}
+div.weatherdetail {
+	font-weight: normal;
+	margin-bottom:50px;
+}
+span.weathercity {
+	font-weight: bold;
+}
+.weatherinfo > h3 {
+	font-weight: bold;
+	font-size:1.4em;
+	margin-bottom:5px;
+}
+
+table.weatherdetail {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse:collapse;
+}
+
+table.weatherdetail td.leftalign {
+	text-align: left;
+}
+table.weatherdetail td.rightalign {
+	text-align: right;
+}
+
+table.weatherdetail span.temp {
+	font-weight: bold;
+}
+
+table.weatherdetail td.leftalign span.temp {
+	font-size:2em;
+}
+
+.weathericon, .weathersun {
+	position: relative;
+	float: right;
+	width: 200px
+}
+
+#pages {
+	margin:auto;
+	min-width:800px;
+	max-width:1200px;
+	padding-top:20px;
+}
+#container {
+	width:100%;
+	top:37px;
+	bottom:0;
+	position:absolute;
+	overflow:auto;
+}
+
+#toolbar {
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	background-color: #EEE;
+	height: 35px;
+	position:fixed;
+	width:100%;
+}
+
+#datepicker {
+	position:absolute;
+	display:block;
+	left: 50%;
+	margin-top:5px;
+	margin-left:-75px;
+	width:150px;
+	text-align:center;
+	font-size: 1.5em;
+}
+
+#slider {
+	position:absolute;
+	margin-top: 10px;
+	left: 20%;
+	width: 60%;
+}
+
+#buttonset {
+	right: 10px;
+	position:absolute;
+}
+
+#buttonset > button{
+	margin-top:2px;
+}
+
+#home {
+	margin-top:2px;
+	left: 10px;
+	display:block;
+	position:absolute;
+}
+
+#editChart {
+	margin-top:2px;
+	left: 140px;
+	display:block;
+	position:absolute;
+}
+
+#backToChart {
+	margin-top:2px;
+	left: 10px;
+	display:block;
+	position:absolute;
+}
+
+#period {
+	right: 150px;
+	position:absolute;
+}
+
+#grouping {
+	right: 150px;
+	position:absolute;
+}
+
+#period > label{
+	margin-top:2px;
+}
+
+#grouping > label{
+	margin-top:2px;
+}
+
+#overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+	background: url(../images/loading.gif) 50% 50% no-repeat #FFF;
+	z-index: 100;
+	opacity: 0.75;
+	display: none;
+}
+
+table.chartinfo {
+	width: 800px;
+	table-layout: fixed;
+	margin: 80px auto 10px;
+	color: #222;
+	font-size: 1.2em;
+	border-collapse:collapse;
+}
+
+table.chartinfo tr {
+	border-top: solid 1px #DDD;
+	border-bottom: solid 1px #DDD;
+}
+
+table.chartinfo > thead > tr {
+	background-color: #EEE;
+	height: 35px;
+}
+
+table.chartinfo > tbody > tr {
+	height: 60px;
+}
+
+table.chartinfo > tbody > tr > td {
+	text-align: center;
+}
+
+table.chartinfo > tbody > tr > td:first-child  {
+	text-align: left;
+	width: 200px;
+}
+
+table.chartinfo > tbody > tr > td.header {
+	text-align: left;
+	padding-left: 10px;
+}
+
+table.chartinfo > tbody > tr > td.pointer {
+	cursor: pointer;
+}
+
+table.chartinfo div.value {
+	font-weight: bold;
+}
+
+table.chartinfo div.timestamp {
+	font-size: 0.8em;
+}
+
+div.dialogBox {
+	font-size: 0.9em;
+}
+
+#edit_chart_dialog {
+	display:none;
+}
+
+#edit_chart_tab table {
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse:collapse;
+}
+
+#edit_chart_tab  table > thead > tr {
+	height: 20px;
+}
+
+#edit_chart_tab table th {
+	padding: 5px;
+	text-align: left;
+	font-weight: normal;
+}
+
+#edit_chart_tab table td {
+	padding: 5px;
+}
+
+#edit_chart_tab table > tbody > tr {
+	height: 100%;
+}
+
+ul.availableLines, ul.activeLines {
+	display: block;
+	list-style-type: none;
+	margin-top: 5px;
+	padding: 5px;
+	border: solid 1px #DDD;
+	height: 100%;
+}
+
+ul.availableLines > li, ul.activeLines > li {
+  margin: 0 2px 2px 2px;
+  padding: 2px;
+}
+
+#error {
+	position: fixed;
+	bottom: 5px;
+	left: 10px;
+	right: 10px;
+	display: none;
+}
