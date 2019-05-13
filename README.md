@@ -183,5 +183,8 @@ Screenshots
 
 Kontakt
 ------
-Bertram Winter
+Bertram Winter (als Autor der Originalversion)
 bertram.winter@gmail.com
+
+Nicolai Emig 
+nicolai@emig.me
