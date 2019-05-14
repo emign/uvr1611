@@ -86,11 +86,15 @@ var lineChart = {
 			this.json.analog[i][0] = new Date(this.json[i][0]*1000);				
 		}
 		
+
 		for (var i in cols.analog) {
 			this.data.analog.addColumn('number', cols.analog[i].name);
 			columns.push(columns.length);
-			var tableRow = {min:{value:null},max:{value:null},avg:{value:0}};
+			var tableRow = {min:{value:null},max:{value:null},avg:{value:0},current:{value:0}};
+
 			for (var j = 0; j < this.json.length; j++ ) { 
+				
+
 				var value = this.json[j][cols.analog[i].index];
 				this.json.analog[j].push(value);
 				if(tableRow.min.value == null || value < tableRow.min.value) {
@@ -106,10 +110,17 @@ var lineChart = {
 					tableRow.max.column = this.json.analog[j].length-1;
 				}
 				tableRow.avg.value += value;
+				tableRow.current.value = value;
 			}
+			
+			
+		
 			tableRow.avg.value /= this.json.length;
+		
 			table.push(tableRow);
 		}
+
+
 
 		this.options.series = {};
 		if (menu.selectedItem.options) {
@@ -289,8 +300,7 @@ var barChart = {
 		{
 			data.addColumn('number', cols[i].name);
 			table[i] = this.json.statistics[cols[i].frame][cols[i].type];
-		}
-		
+		}		
 		menu.selectedItem.table.fill(table, this.options.vAxis.format);
 		data.addRows(this.json.rows);
 		this.chart.draw(data, this.options);
@@ -352,7 +362,8 @@ var minmaxChart = {
 			// add columns
 			this.data.addColumn('datetime', 'Time');
 			this.data.addColumn('number', 'Minimum '+menu.selectedItem.columns.analog[line].name);
-			this.data.addColumn('number', 'Maximum '+menu.selectedItem.columns.analog[line].name);
+			this.data.addColumn('number', 'Maximum '+menu.selectedItem.columns.analog[line].name);			
+
 			// format date
 			for ( var i = 0; i < this.json.length; i++ ) { 
 				this.json[i][0] = new Date(this.json[i][0]*1000);

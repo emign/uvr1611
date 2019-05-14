@@ -1,7 +1,7 @@
 function Table(item)
 {
 	var $table = $("<table><thead></thead><tbody></tbody></table>");
-	$table.find('thead').append("<tr><th /><th>Minimum</th><th>Maximum</th><th>Mittelwert</th></tr>");
+	$table.find('thead').append("<tr><th /><th>Minimum</th><th>Maximum</th><th>Mittelwert</th><th>Aktuell</th></tr>");
 	$table.addClass("chartinfo");
 		
 	var data = [];
@@ -10,7 +10,7 @@ function Table(item)
 	}
 	
 	for(var i in data) {
-		$table.find('tbody').append('<tr><td><svg xmlns="http://www.w3.org/2000/svg" height="15" width="200"><g><text text-anchor="start" x="21" y="12.75" font-family="Arial" font-size="15" stroke="none" stroke-width="0" fill="#222222">'+data[i].name+'</text><rect width="15" height="15" stroke="none" stroke-width="0" fill="'+data[i].color+'"/></g></svg></td><td class="pointer"><div class="value"></div><div class="timestamp"></div></td><td class="pointer"><div class="value"></div><div class="timestamp"></div></td><td><div class="value"></div></td></tr>');
+		$table.find('tbody').append('<tr><td><svg xmlns="http://www.w3.org/2000/svg" height="15" width="200"><g><text text-anchor="start" x="21" y="12.75" font-family="Arial" font-size="15" stroke="none" stroke-width="0" fill="#222222">'+data[i].name+'</text><rect width="15" height="15" stroke="none" stroke-width="0" fill="'+data[i].color+'"/></g></svg></td><td class="pointer"><div class="value"></div><div class="timestamp"></div></td><td class="pointer"><div class="value"></div><div class="timestamp"></div></td><td><div class="value"></div></td><td><div class="value"></div></td></tr>');
 	}
 	
 	$("td.pointer",$table).click(function() {
@@ -56,6 +56,12 @@ function Table(item)
 			                                              " um "+ timeFormatter.formatValue(data[index].max.time));
 			$(this).find("td:eq(2)").data({row: data[index].max.row, column: data[index].max.column});
 			$(this).find("td:eq(3) > div.value").text(numberFormatter.formatValue(data[index].avg.value));
+
+
+			//console.log(data);
+			$(this).find("td:eq(4)").data({row: data[index].current.row, column: data[index].current.column});
+			$(this).find("td:eq(4) > div.value").text(numberFormatter.formatValue(data[index].current.value));
+
 		});
 		
 		// fill digital table
