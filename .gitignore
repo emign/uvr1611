@@ -1,2 +1,4 @@
 config/config.ini
 .DS_Store
+.htaccess
+.htpasswd
