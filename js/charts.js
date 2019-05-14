@@ -82,8 +82,9 @@ var lineChart = {
 		for ( var i = 0; i < this.json.length; i++ ) { 
 			this.json.digital[i] = [];
 			this.json.analog[i] = [];
-			this.json.digital[i][0] = new Date(this.json[i][0]*1000);
-			this.json.analog[i][0] = new Date(this.json[i][0]*1000);				
+			this.json.digital[i][0] = new Date(this.json[i][0]*1000-(60*60*1000));
+			this.json.analog[i][0] = new Date(this.json[i][0]*1000-(60*60*1000));
+			
 		}
 		
 		for (var i in cols.analog) {
