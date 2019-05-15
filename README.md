@@ -25,18 +25,10 @@ Die Features sind:
 * Monatliche Trendwerte
 * Aktuelles Wetter
 
-
-Downloads
-------
-
-* [Stable (v2.10)](https://github.com/berwinter/uvr1611/archive/v210.zip)
-* [Stable (v0.96)](https://github.com/berwinter/uvr1611/archive/v96.zip)
-* [Development](https://github.com/berwinter/uvr1611/archive/master.zip)
-
 Vorteile der Anwendung
 ------
 
-Der BL-Net besitzt nur eine begrenzte Speicherkapazität und die Heizungsdaten müssen deshalb regelmäßig – manuell – ausgelesen werden, damit sie nicht verloren gehen. Der direkte Webzugriff auf den BL-Net durch externe Nutzer ist in mehrfacher Hinsicht unvorteilhaft (Sicherheit und Überlastung). Das Speichern und Auslesen der Daten aus der SQL Datenbank verhindert diese Problematik.
+Der BL-Net (und auch das CMI) besitzt nur eine begrenzte Speicherkapazität und die Heizungsdaten müssen deshalb regelmäßig – manuell – ausgelesen werden, damit sie nicht verloren gehen. Der direkte Webzugriff auf den BL-Net/CMI durch externe Nutzer ist in mehrfacher Hinsicht unvorteilhaft (Sicherheit und Überlastung). Das Speichern und Auslesen der Daten aus der SQL Datenbank verhindert diese Problematik.
 
 I Installation
 ------
