@@ -127,7 +127,7 @@ Das muss man natürlich an seine eigenen Gegebenheiten anpassen. Die SQL-Query h
 	MODIFY COLUMN substraction1 FLOAT
 	AS (SPALTE1 - SPALTE2);
 
-Anschließend kann man den virtuellen Kanal `substration1` einfach wie jeden anderen benutzen.
+Anschließend kann man den virtuellen Kanal `substration1` einfach wie jeden anderen benutzen. So kann man sich auch mehrere Differenzen oder sonstige berechneten Werte anzeigen lassen. Wichtig ist nur zu beachten, dass auch die Tabellen `t_names`, t_names_of_charts`und `t_schema` geändert werden, da hier Spalten existieren, deren Zelle `type` die Bezeichnungen der Kanäle (analog1, analog2 ,...) als enums vordefiniert haben. Hier müssen die neuen Bezeichner eingepflegt werden.
 
 Anpassen der Anwendung
 ------
