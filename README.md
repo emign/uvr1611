@@ -112,6 +112,22 @@ Standardmäßig sind die Diagramme nur für angemeldete Benutzer sichtbar. Das S
 
 ![Diagramme bearbeiten](./doc/edit.png)
 
+Differenzen (Spreizung)
+------
+
+![Spreizung](./doc/spreizung_beispiel.png)
+Es ist auch möglich, sich Differenzen in den Diagrammen anzuzeigen, etwa die Differenz aus der Vorlauf- und der Rücklauftemperatur, um sich so eine Spreizung anzeigen zu lassen. Dies erfordert allerdings etwas Handarbeit.
+In der Tabelle `t_data` existiert eine Spalte `substraction1`, welche als berechnete Spalte definiert ist. Das CREATE-Table Fragment sieht zum Beispiel folgendermaßen aus:
+
+	  `substraction1` float AS (analog10 - analog8) VIRTUAL,
+
+Das muss man natürlich an seine eigenen Gegebenheiten anpassen. Die SQL-Query hierfür sieht so aus:
+
+	Alter TABLE `t_data` 
+	MODIFY COLUMN substraction1 FLOAT
+	AS (SPALTE1 - SPALTE2);
+
+Anschließend kann man den virtuellen Kanal `substration1` einfach wie jeden anderen benutzen.
 
 Anpassen der Anwendung
 ------
